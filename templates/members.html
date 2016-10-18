@@ -1,0 +1,11 @@
+<!doctype=html>
+	<header>
+		<a href="http://localhost:5000/">Home</a>
+		<a href="http://localhost:5000/register/">Register</a>
+		<a href="http://localhost:5000/members/">Members</a>
+	</header>
+<ul>
+	{% for item in m_list %}
+		<li> {{ item }} </li>
+	{% endfor %}
+</ul>
