@@ -1,3 +1,7 @@
-form {
-	color: red;
+div#reg {
+	margin-left: 50px; 
+}
+
+div#mem {
+	margin-left: 50px;
 }
