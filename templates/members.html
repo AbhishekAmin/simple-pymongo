@@ -1,11 +1,30 @@
 <!doctype=html>
-	<header>
-		<a href="http://localhost:5000/">Home</a>
-		<a href="http://localhost:5000/register/">Register</a>
-		<a href="http://localhost:5000/members/">Members</a>
-	</header>
-<ul>
-	{% for item in m_list %}
-		<li> {{ item }} </li>
-	{% endfor %}
-</ul>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+<html>
+<title>Text Input Control</title>
+<body>
+	<div id='reg'>
+		<h2>Register</h2>
+		<form action="/members/" method="POST">
+			<div>
+				<input type="text", class="form-control", name="first_name", placeholder="First name">
+			</div>
+			<div>
+				<input type="text", class="form-control", name="last_name", placeholder="Last name">
+			</div>
+			<br/>
+			<button type="submit" id='reg_submit'>Submit</button>
+		</form>
+	</div>
+	<br/>
+	<div id='mem'>
+		<h2>Members</h2>
+		<ul>
+			{% for item in m_list %}
+				<li> {{ item }} </li>
+			{% endfor %}
+		</ul>
+	</div>
+</body>
+</html>
