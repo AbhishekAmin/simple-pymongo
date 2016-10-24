@@ -10,32 +10,27 @@ db = client.newDB
 
 
 @app.route('/')
-def hello():
-    return render_template('hello.html')
+@app.route('/members/', methods=['POST', 'GET'])
+def members():
 
-
-@app.route('/register/', methods=['POST', 'GET'])
-def register():
+	#register
 	if request.method == 'POST':
 		m_list = db.member_list
 		existing_member = m_list.find_one({'first_name': request.form['first_name']})
 
 		if existing_member is None:
 			m_list.insert({'first_name': request.form['first_name'], 'last_name': request.form['last_name']})
-			return redirect(url_for('hello'))
+			return redirect(url_for('members'))
 	
 		return 'Member already registered.'
 
-	return render_template("register.html")
-
-
-@app.route('/members/')
-def members():
+	#members
 	cursor = db.member_list.find()
 	m_list = []
 	for item in cursor:
 		m_list.append(item['first_name'] + ' ' + item['last_name'])
-	return render_template('members.html')
+
+	return render_template("members.html", m_list=m_list, item=item)
 
 
 if __name__ == '__main__':
